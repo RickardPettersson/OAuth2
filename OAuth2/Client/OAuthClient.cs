@@ -98,7 +98,7 @@ namespace OAuth2.Client
         /// <summary>
         /// Defines URI of service which should be called to initiate authentication process.
         /// </summary>
-        protected abstract Endpoint LoginServiceEndpoint { get; }
+        protected abstract Endpoint LoginServiceEndpoint { get; }   
 
         /// <summary>
         /// Defines URI of service which issues access token.
@@ -131,6 +131,9 @@ namespace OAuth2.Client
 
             AccessToken = collection.GetOrThrowUnexpectedResponse(OAuthTokenKey);
             AccessTokenSecret = collection.GetOrThrowUnexpectedResponse(OAuthTokenSecretKey);
+
+            System.Web.HttpContext.Current.Session["AccessToken"] = AccessToken;
+            System.Web.HttpContext.Current.Session["AccessTokenSecret"] = AccessTokenSecret;
         }
 
         /// <summary>

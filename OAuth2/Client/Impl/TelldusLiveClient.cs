@@ -85,37 +85,7 @@ namespace OAuth2.Client.Impl
         /// </summary>
         protected override UserInfo ParseUserInfo(string content)
         {
-            var response = JObject.Parse(content);
-
-            var name = response["name"].Value<string>();
-            var index = name.IndexOf(' ');
-
-            string firstName;
-            string lastName;
-            if (index == -1)
-            {
-                firstName = name;
-                lastName = null;
-            }
-            else
-            {
-                firstName = name.Substring(0, index);
-                lastName = name.Substring(index + 1);
-            }
-            var avatarUri = response["profile_image_url"].Value<string>();
-            return new UserInfo
-            {
-                Id = response["id"].Value<string>(),
-                Email = null,
-                FirstName = firstName,
-                LastName = lastName,
-                AvatarUri =
-                {
-                    Small = avatarUri.Replace("normal", "mini"),
-                    Normal = avatarUri,
-                    Large = avatarUri.Replace("normal", "bigger")
-                }
-            };
+            throw new NotImplementedException();
         }
     }
 }

@@ -55,7 +55,16 @@ namespace OAuth2.Example.Controllers
         /// </summary>
         public ActionResult Auth()
         {
-            return View(GetClient().GetUserInfo(Request.QueryString));
+            var c = GetClient();
+
+            if (c.Name == "TelldusLive")
+            {
+                return View("TelldusLive");
+            }
+            else
+            {
+                return View(GetClient().GetUserInfo(Request.QueryString));
+            }
         }
 
         private IClient GetClient()
